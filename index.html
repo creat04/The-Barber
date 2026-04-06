@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Barber - Barbería Premium en Santa Cruz</title>
+<meta name="description" content="The Barber: barbería premium en Santa Cruz de la Sierra. Cortes clásicos, degradados, afeitado con navaja. 2 sucursales: Av. Beni y Av. Cristo Redentor.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--bg:#141414;--bg2:#1a1a1a;--bg3:#292929;--card:#1f1f1f;
+--fg:#ede8dc;--fg2:#d4cfc3;--muted:#8a8577;
+--gold:#c9952a;--gold-light:#dbb54e;--gold-dark:#8a6a23;
+--border:#3d3627;
+--heading:'Playfair Display',serif;--body:'Montserrat',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);line-height:1.6}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.container{max-width:1200px;margin:0 auto;padding:0 1rem}
+.gold-text{background:linear-gradient(135deg,var(--gold-light),var(--gold),var(--gold-dark));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gold-bg{background:linear-gradient(135deg,var(--gold-light),var(--gold),var(--gold-dark))}
+.btn{display:inline-block;padding:1rem 2rem;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.15em;transition:opacity .3s;cursor:pointer;border:none;font-family:var(--body)}
+.btn-gold{color:#111}.btn-gold:hover{opacity:.9}
+.btn-outline{border:1px solid var(--gold);color:var(--gold);background:none}.btn-outline:hover{background:var(--gold);color:#111}
+.section{padding:6rem 0}
+.section-title{font-family:var(--heading);font-size:clamp(2rem,5vw,3.2rem);font-weight:700;margin-bottom:1rem}
+.section-sub{color:var(--muted);max-width:36rem;margin:0 auto}
+.text-center{text-align:center}
+.divider{display:flex;align-items:center;justify-content:center;gap:.75rem;margin-bottom:1.5rem}
+.divider span{display:block;width:2rem;height:1px;background:var(--gold)}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(20,20,20,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:4.5rem}
+.nav-logo{font-family:var(--heading);font-size:1.5rem;font-weight:700}
+.nav-links{display:flex;align-items:center;gap:2rem}
+.nav-links a{font-size:.75rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);transition:color .3s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{padding:.5rem 1.25rem;font-size:.75rem}
+.hamburger{display:none;background:none;border:none;color:var(--fg);font-size:1.5rem;cursor:pointer}
+.mobile-menu{display:none;background:var(--bg);border-bottom:1px solid var(--border);padding:1rem}
+.mobile-menu a{display:block;padding:.75rem 0;font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.mobile-menu a:hover{color:var(--gold)}
+@media(max-width:768px){
+.nav-links{display:none}.hamburger{display:block}
+.mobile-menu.open{display:block}
+}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0}.hero-bg img{width:100%;height:100%;object-fit:cover}
+.hero-overlay{position:absolute;inset:0;background:rgba(20,20,20,.72)}
+.hero-content{position:relative;z-index:2;text-align:center;padding:1rem;max-width:56rem}
+.hero h1{font-family:var(--heading);font-size:clamp(3rem,8vw,6rem);font-weight:800;margin-bottom:.5rem}
+.hero .subtitle{font-size:clamp(.85rem,2vw,1.15rem);text-transform:uppercase;letter-spacing:.2em;color:var(--muted);margin-bottom:.5rem}
+.hero .locations{font-size:.85rem;color:var(--muted);margin-bottom:1.5rem}
+.hero .desc{color:var(--fg2);max-width:38rem;margin:0 auto 2.5rem;line-height:1.8}
+.hero-buttons{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}
+.hero-buttons .dropdown{position:relative}
+.hero-buttons .dropdown-menu{position:absolute;top:100%;left:0;right:0;margin-top:.5rem;background:var(--card);border:1px solid var(--border);display:none;z-index:10}
+.hero-buttons .dropdown-menu.show{display:block}
+.hero-buttons .dropdown-menu a{display:block;padding:.75rem 1rem;font-size:.85rem;border-bottom:1px solid var(--border);transition:background .2s,color .2s}
+.hero-buttons .dropdown-menu a:last-child{border:none}
+.hero-buttons .dropdown-menu a:hover{background:rgba(201,149,42,.1);color:var(--gold)}
+
+/* SERVICES */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
+.service-card{background:var(--card);border:1px solid var(--border);overflow:hidden;transition:border-color .3s}
+.service-card:hover{border-color:rgba(201,149,42,.4)}
+.service-card img{width:100%;height:12rem;object-fit:cover;transition:transform .5s}
+.service-card:hover img{transform:scale(1.05)}
+.service-card .info{padding:1.5rem}
+.service-card .info-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.75rem}
+.service-card h3{font-family:var(--heading);font-size:1.15rem;font-weight:600}
+.service-card .price{color:var(--gold);font-size:.8rem;font-weight:600;white-space:nowrap;margin-left:.75rem}
+.service-card p{color:var(--muted);font-size:.85rem;line-height:1.6}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr}}
+.about-grid img{width:100%;height:500px;object-fit:cover}
+.about-label{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem}
+.about-label span:first-child{width:2rem;height:1px;background:var(--gold)}
+.about-label span:last-child{color:var(--gold);font-size:.7rem;text-transform:uppercase;letter-spacing:.15em;font-weight:600}
+.about-text{color:var(--fg2);line-height:1.8;margin-bottom:1.5rem}
+.about-features{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem}
+@media(max-width:640px){.about-features{grid-template-columns:1fr}}
+.about-features .feat{text-align:center}
+.about-features .feat-icon{color:var(--gold);font-size:1.5rem;margin-bottom:.5rem}
+.about-features h4{font-family:var(--heading);font-size:.85rem;font-weight:600;margin-bottom:.25rem}
+.about-features p{color:var(--muted);font-size:.75rem}
+
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem}
+@media(max-width:640px){.gallery-grid{grid-template-columns:repeat(2,1fr)}}
+.gallery-grid .item{overflow:hidden}
+.gallery-grid .item img{width:100%;height:100%;object-fit:cover;min-height:200px;transition:transform .5s}
+.gallery-grid .item:hover img{transform:scale(1.05)}
+.gallery-grid .item.big{grid-column:span 2;grid-row:span 2}
+.gallery-grid .item.big img{min-height:400px}
+
+/* REVIEWS */
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem}
+.review-card{background:var(--card);border:1px solid var(--border);padding:1.5rem;transition:border-color .3s}
+.review-card:hover{border-color:rgba(201,149,42,.25)}
+.stars{color:var(--gold);margin-bottom:1rem;font-size:.85rem;letter-spacing:2px}
+.review-card blockquote{color:var(--fg2);font-size:.85rem;font-style:italic;line-height:1.7;margin-bottom:1rem}
+.review-card cite{color:var(--fg);font-weight:600;font-size:.85rem;font-style:normal}
+
+/* CONTACT */
+.contact-tabs{display:flex;justify-content:center;gap:1rem;margin-bottom:3rem}
+.contact-tabs button{padding:.75rem 1.5rem;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;border:1px solid var(--border);background:none;color:var(--muted);cursor:pointer;transition:all .3s;font-family:var(--body)}
+.contact-tabs button.active{border-color:var(--gold);color:#111}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+@media(max-width:768px){.contact-grid{grid-template-columns:1fr}}
+.contact-info{display:flex;flex-direction:column;gap:2rem}
+.contact-item{display:flex;gap:1rem;align-items:flex-start}
+.contact-item .icon{color:var(--gold);font-size:1.1rem;margin-top:.15rem;flex-shrink:0}
+.contact-item h4{font-family:var(--heading);font-size:1rem;font-weight:600;margin-bottom:.25rem}
+.contact-item p,.contact-item a{color:var(--muted);font-size:.85rem}
+.contact-item a:hover{color:var(--gold)}
+.social-links{display:flex;gap:1rem;padding-top:1rem}
+.social-links a{width:2.5rem;height:2.5rem;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--muted);transition:all .3s;font-size:1rem}
+.social-links a:hover{color:var(--gold);border-color:var(--gold)}
+.map-frame{height:400px;background:var(--card);border:1px solid var(--border);overflow:hidden}
+.map-frame iframe{width:100%;height:100%;border:0;filter:invert(90%) hue-rotate(180deg)}
+
+/* FOOTER */
+footer{background:var(--card);border-top:1px solid var(--border);padding:3rem 0}
+.footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;align-items:start}
+@media(max-width:640px){.footer-grid{grid-template-columns:1fr}}
+.footer-brand{font-family:var(--heading);font-size:1.5rem;font-weight:700}
+.footer-suc h4{font-family:var(--heading);font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.75rem}
+.footer-suc .loc{display:flex;gap:.5rem;align-items:flex-start;color:var(--muted);font-size:.75rem;margin-bottom:.75rem}
+.footer-suc .loc strong{color:var(--fg);font-weight:600}
+.footer-suc a:hover{color:var(--gold)}
+.footer-social{display:flex;gap:1rem;justify-content:flex-end}
+@media(max-width:640px){.footer-social{justify-content:flex-start}}
+.footer-social a{color:var(--muted);font-size:1.1rem;transition:color .3s}
+.footer-social a:hover{color:var(--gold)}
+.footer-copy{border-top:1px solid var(--border);margin-top:2rem;padding-top:2rem;text-align:center;color:var(--muted);font-size:.75rem}
+.scroll-indicator{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem}
+.scroll-indicator span{color:var(--muted);font-size:.65rem;text-transform:uppercase;letter-spacing:.15em}
+.scroll-indicator .line{width:1px;height:2rem;background:rgba(201,149,42,.5);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+<div class="container nav-inner">
+<a href="#inicio" class="nav-logo gold-text">THE BARBER</a>
+<div class="nav-links">
+<a href="#inicio">Inicio</a><a href="#servicios">Servicios</a><a href="#nosotros">Nosotros</a>
+<a href="#galeria">Galería</a><a href="#resenas">Reseñas</a><a href="#contacto">Contacto</a>
+<a href="https://wa.me/59178530626" target="_blank" class="btn gold-bg nav-cta btn-gold">Reservar</a>
+</div>
+<button class="hamburger" onclick="document.getElementById('mob').classList.toggle('open')">☰</button>
+</div>
+<div id="mob" class="mobile-menu">
+<a href="#inicio" onclick="closeMob()">Inicio</a><a href="#servicios" onclick="closeMob()">Servicios</a>
+<a href="#nosotros" onclick="closeMob()">Nosotros</a><a href="#galeria" onclick="closeMob()">Galería</a>
+<a href="#resenas" onclick="closeMob()">Reseñas</a><a href="#contacto" onclick="closeMob()">Contacto</a>
+<a href="https://wa.me/59178530626" target="_blank" class="btn gold-bg btn-gold" style="text-align:center;margin-top:.5rem">Reservar Cita</a>
+</div>
+</nav>
+
+<!-- HERO -->
+<section id="inicio" class="hero">
+<div class="hero-bg"><img src="images/hero-barbershop.png" alt="Interior de The Barber, barbería premium en Santa Cruz" width="1920" height="1080"><div class="hero-overlay"></div></div>
+<div class="hero-content">
+<div class="divider"><span></span>✂<span></span></div>
+<h1 class="gold-text">THE BARBER</h1>
+<p class="subtitle">Santa Cruz de la Sierra</p>
+<p class="locations">📍 2 sucursales: Av. Beni · Av. Cristo Redentor</p>
+<p class="desc">Nuevo concepto en barbería para hombres que valoran el estilo y el cuidado personal. Cada visita es una experiencia, no solo un servicio.</p>
+<div class="hero-buttons">
+<div class="dropdown">
+<button class="btn gold-bg btn-gold" onclick="document.getElementById('dd').classList.toggle('show')">Reservar Cita</button>
+<div id="dd" class="dropdown-menu">
+<a href="https://wa.me/59178530626" target="_blank">Suc. Beni</a>
+<a href="https://wa.me/59175888263" target="_blank">Suc. Norte</a>
+</div>
+</div>
+<a href="#servicios" class="btn btn-outline">Ver Servicios</a>
+</div>
+</div>
+<div class="scroll-indicator"><span>Scroll</span><div class="line"></div></div>
+</section>
+
+<!-- SERVICES -->
+<section id="servicios" class="section" style="background:var(--bg3)">
+<div class="container">
+<div class="text-center" style="margin-bottom:4rem">
+<div class="divider"><span></span>✂<span></span></div>
+<h2 class="section-title gold-text">Nuestros Servicios</h2>
+<p class="section-sub">Ofrecemos servicios de barbería premium con los mejores productos y técnicas.</p>
+</div>
+<div class="services-grid">
+<div class="service-card"><img src="images/barber-cutting.png" alt="Corte Clásico" loading="lazy"><div class="info"><div class="info-head"><h3>Corte Clásico</h3><span class="price">Desde Bs 40</span></div><p>Corte de cabello tradicional con acabado perfecto. Incluye lavado y peinado.</p></div></div>
+<div class="service-card"><img src="images/fade-haircut.png" alt="Degradado & Fade" loading="lazy"><div class="info"><div class="info-head"><h3>Degradado &amp; Fade</h3><span class="price">Desde Bs 50</span></div><p>Degradados modernos: low, mid y high fade con detailing de precisión.</p></div></div>
+<div class="service-card"><img src="images/barber-shave.png" alt="Afeitado con Navaja" loading="lazy"><div class="info"><div class="info-head"><h3>Afeitado con Navaja</h3><span class="price">Desde Bs 35</span></div><p>Afeitado clásico con espuma caliente y navaja. La experiencia barber shop definitiva.</p></div></div>
+<div class="service-card"><div class="info"><div class="info-head"><h3>Arreglo de Barba</h3><span class="price">Desde Bs 30</span></div><p>Recorte, diseño y perfilado de barba. Incluye productos de cuidado.</p></div></div>
+<div class="service-card"><div class="info"><div class="info-head"><h3>Corte + Barba</h3><span class="price">Desde Bs 60</span></div><p>Combo completo: corte de cabello y arreglo de barba al mejor precio.</p></div></div>
+<div class="service-card"><div class="info"><div class="info-head"><h3>Styling para Eventos</h3><span class="price">Desde Bs 70</span></div><p>Peinado y arreglo especial para bodas, graduaciones y eventos importantes.</p></div></div>
+</div>
+<div class="text-center" style="margin-top:3rem">
+<a href="https://wa.me/59178530626?text=Hola,%20quiero%20reservar%20una%20cita" target="_blank" class="btn gold-bg btn-gold">Reservar Ahora</a>
+</div>
+</div>
+</section>
+
+<!-- ABOUT -->
+<section id="nosotros" class="section">
+<div class="container">
+<div class="about-grid">
+<img src="images/barber-experience.png" alt="La experiencia The Barber" loading="lazy">
+<div>
+<div class="about-label"><span></span><span>Sobre Nosotros</span></div>
+<h2 class="section-title gold-text">La Experiencia<br>The Barber</h2>
+<p class="about-text">En The Barber te ofrecemos un nuevo concepto en barbería pensado para hombres que buscan estilo, comodidad y profesionalismo. Con dos sucursales en Santa Cruz — Av. Beni y Av. Cristo Redentor — somos más que una barbería: somos un espacio donde el corte perfecto se combina con buena música y buena compañía.</p>
+<p class="about-text">Cuidamos cada detalle para que salgas con confianza. Nuestro equipo de barberos profesionales se capacita constantemente para ofrecerte las últimas tendencias y técnicas del mundo de la barbería.</p>
+<div class="about-features">
+<div class="feat"><div class="feat-icon">🛡️</div><h4>Higiene</h4><p>Herramientas esterilizadas y productos certificados</p></div>
+<div class="feat"><div class="feat-icon">🏆</div><h4>Profesionalismo</h4><p>Barberos capacitados y en constante formación</p></div>
+<div class="feat"><div class="feat-icon">❤️</div><h4>Experiencia</h4><p>Cada visita es una experiencia premium</p></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- GALLERY -->
+<section id="galeria" class="section">
+<div class="container">
+<div class="text-center" style="margin-bottom:4rem">
+<h2 class="section-title gold-text">Galería</h2>
+<p class="section-sub">Nuestro espacio y nuestro trabajo hablan por sí mismos.</p>
+</div>
+<div class="gallery-grid">
+<div class="item big"><img src="images/barber-cutting.png" alt="Barbero cortando cabello en The Barber" loading="lazy"></div>
+<div class="item"><img src="images/barber-experience.png" alt="Experiencia premium en The Barber" loading="lazy"></div>
+<div class="item"><img src="images/facial-treatment.png" alt="Tratamiento facial en The Barber" loading="lazy"></div>
+<div class="item"><img src="images/barber-shave.png" alt="Afeitado con navaja profesional" loading="lazy"></div>
+<div class="item"><img src="images/fade-haircut.png" alt="Corte degradado moderno" loading="lazy"></div>
+<div class="item"><img src="images/tools.png" alt="Herramientas profesionales de barbería" loading="lazy"></div>
+</div>
+</div>
+</section>
+
+<!-- REVIEWS -->
+<section id="resenas" class="section" style="background:var(--bg3)">
+<div class="container">
+<div class="text-center" style="margin-bottom:4rem">
+<h2 class="section-title gold-text">Lo que Dicen Nuestros Clientes</h2>
+</div>
+<div class="reviews-grid">
+<div class="review-card"><div class="stars">★★★★★</div><blockquote>"Buenos cortes, buen servicio. Recomiendo al 100%. El ambiente es muy agradable y los barberos son muy profesionales."</blockquote><cite>— Carlos M.</cite></div>
+<div class="review-card"><div class="stars">★★★★★</div><blockquote>"El mejor lugar para cortarse el pelo en Santa Cruz. Muy buen fade y el trato es excelente. Volveré siempre."</blockquote><cite>— Diego R.</cite></div>
+<div class="review-card"><div class="stars">★★★★☆</div><blockquote>"Gran experiencia, el local es increíble y moderno. El corte quedó perfecto. Precios justos por la calidad que ofrecen."</blockquote><cite>— Fernando L.</cite></div>
+<div class="review-card"><div class="stars">★★★★★</div><blockquote>"Fui por primera vez y quedé muy satisfecho. El degradado quedó impecable. Lo recomiendo para quienes buscan calidad."</blockquote><cite>— Andrés P.</cite></div>
+</div>
+<div class="text-center" style="margin-top:2.5rem">
+<a href="https://www.google.com/maps/place/The+Barber+Santa+Cruz" target="_blank" style="color:var(--gold);font-size:.8rem;text-transform:uppercase;letter-spacing:.15em">Dejar reseña en Google Maps →</a>
+</div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contacto" class="section">
+<div class="container">
+<div class="text-center" style="margin-bottom:4rem">
+<h2 class="section-title gold-text">Contáctanos</h2>
+<p class="section-sub">Estamos listos para atenderte</p>
+</div>
+<div class="contact-tabs">
+<button class="active gold-bg btn-gold" onclick="switchSuc(0,this)">Sucursal Beni</button>
+<button onclick="switchSuc(1,this)">Sucursal Norte</button>
+</div>
+<div class="contact-grid">
+<div class="contact-info">
+<div class="contact-item"><span class="icon">📍</span><div><h4>Ubicación</h4><p id="c-dir">Av. Beni, entre 3.er y 4.to anillo</p><p>Santa Cruz de la Sierra, Bolivia</p><a id="c-map" href="https://maps.app.goo.gl/18ZXNAxWharuG4vZ9" target="_blank">Abrir en Maps ↗</a></div></div>
+<div class="contact-item"><span class="icon">📞</span><div><h4>Teléfono</h4><a id="c-tel" href="tel:+59178530626">+591 78530626</a></div></div>
+<div class="contact-item"><span class="icon">✉️</span><div><h4>Correo</h4><a href="mailto:info.thebarber.bo@gmail.com">info.thebarber.bo@gmail.com</a></div></div>
+<div class="contact-item"><span class="icon">🕐</span><div><h4>Horario</h4><div id="c-hor"><p>Lunes – Sábado: 10:00 a.m. – 8:00 p.m.</p><p>Domingo: Cerrado</p></div></div></div>
+<div class="social-links">
+<a href="https://www.instagram.com/thebarberscz" target="_blank">📷</a>
+<a href="https://www.facebook.com/TheBarberSantaCruz" target="_blank">👤</a>
+<a id="c-wa" href="https://wa.me/59178530626" target="_blank">💬</a>
+</div>
+</div>
+<div class="map-frame"><iframe id="c-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3800.0!2d-63.18!3d-17.77!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDQ2JzE0LjQiUyA2M8KwMTAnNTAuMyJX!5e0!3m2!1ses!2sbo!4v1" allowfullscreen loading="lazy" title="Ubicación de The Barber en Google Maps"></iframe></div>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div><span class="footer-brand gold-text">THE BARBER</span><p style="color:var(--muted);font-size:.75rem;margin-top:.25rem">La mejor experiencia en barbería 💈</p></div>
+<div class="footer-suc">
+<h4>Sucursales</h4>
+<div class="loc"><span style="color:var(--gold)">📍</span><div><strong>Suc. Beni</strong><br>Av. Beni, entre 3.er y 4.to anillo<br><a href="tel:+59178530626">+591 78530626</a></div></div>
+<div class="loc"><span style="color:var(--gold)">📍</span><div><strong>Suc. Norte</strong><br>Av. Cristo Redentor<br><a href="tel:+59175888263">+591 75888263</a></div></div>
+</div>
+<div class="footer-social">
+<a href="https://www.instagram.com/thebarberscz" target="_blank">📷</a>
+<a href="https://www.facebook.com/TheBarberSantaCruz" target="_blank">👤</a>
+<a href="https://wa.me/59178530626" target="_blank">💬</a>
+</div>
+</div>
+<div class="footer-copy">© <script>document.write(new Date().getFullYear())</script> The Barber. Todos los derechos reservados.</div>
+</div>
+</footer>
+
+<script>
+function closeMob(){document.getElementById('mob').classList.remove('open')}
+
+var sucs=[
+{dir:"Av. Beni, entre 3.er y 4.to anillo",tel:"+591 78530626",telLink:"+59178530626",hor:["Lunes – Sábado: 10:00 a.m. – 8:00 p.m.","Domingo: Cerrado"],map:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3800.0!2d-63.18!3d-17.77!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDQ2JzE0LjQiUyA2M8KwMTAnNTAuMyJX!5e0!3m2!1ses!2sbo!4v1",mapLink:"https://maps.app.goo.gl/18ZXNAxWharuG4vZ9"},
+{dir:"Av. Cristo Redentor",tel:"+591 75888263",telLink:"+59175888263",hor:["Lunes – Sábado: 11:00 a.m. – 9:00 p.m.","Domingo: Cerrado"],map:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3800.0!2d-63.17!3d-17.74!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDQ0JzI0LjAiUyA2M8KwMTAnMTIuMCJX!5e0!3m2!1ses!2sbo!4v1",mapLink:"https://maps.app.goo.gl/xb553K8Ds49LbD3M8"}
+];
+function switchSuc(i,btn){
+var s=sucs[i];
+document.getElementById('c-dir').textContent=s.dir;
+document.getElementById('c-tel').href='tel:'+s.telLink;document.getElementById('c-tel').textContent=s.tel;
+document.getElementById('c-map').href=s.mapLink;
+document.getElementById('c-wa').href='https://wa.me/'+s.telLink;
+document.getElementById('c-hor').innerHTML=s.hor.map(function(h){return'<p>'+h+'</p>'}).join('');
+document.getElementById('c-iframe').src=s.map;
+document.querySelectorAll('.contact-tabs button').forEach(function(b){b.className='';b.style=''});
+btn.className='active gold-bg btn-gold';
+}
+</script>
+</body>
+</html>
